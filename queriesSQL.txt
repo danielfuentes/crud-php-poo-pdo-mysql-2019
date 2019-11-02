@@ -1,0 +1,50 @@
+
+-- CONSULTA DE LOS USUARIOS
+SELECT* 
+FROM users;
+
+-- CONSULTA DE LAS PELICULAS
+SELECT*
+FROM movies;
+
+-- CONSULTA DE PELICULAS CON CAMPOS IMPORTANTES
+SELECT title, rating, length, awards, release_date
+FROM movies;
+
+-- CONSULTA DONDE LOS PREMIOS SEAN MENORES DE 5
+SELECT*
+FROM movies
+WHERE movies.awards < 5; 
+
+-- CONSULTA DONDE EL RAITNG SEA MAYOR A 7
+SELECT*
+FROM movies
+WHERE movies.rating > 7.0
+ORDER BY rating DESC;
+
+-- CONSULTA TODOS LOS DATOS DE LAS PELICULAS QUE
+SELECT*
+FROM movies
+ORDER BY title;
+
+-- CONSULTA DE PELICULAS Y GENEROS
+SELECT movies.*, genres.name
+FROM movies, genres
+WHERE movies.genre_id = genres.id;
+
+-- CONSTULTA DE USUARIO ID
+SELECT*
+FROM users
+WHERE users.id = 5;
+
+-- CONSULTA DE MOVIE
+SELECT *
+FROM movies
+WHERE title like '%toy%';
+
+SELECT *
+FROM movies
+WHERE id = x;
+
+
+

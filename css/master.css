@@ -1,0 +1,37 @@
+a{
+    color: black;
+    text-decoration: none;
+}
+ a:hover{
+     text-decoration: none;
+     color: black;
+ }
+
+.logo{
+    width: 150px;
+    margin-left: 10px;
+}
+
+.boton-logueo{
+    background-color: grey;
+}
+
+.boton-registro{
+    background-color: grey;
+}
+
+.boton-logueo a{
+    color: white;
+}
+
+.boton-registro a{
+    color: white;
+}
+
+.spacer{
+    padding: 15px 0px 15px 0px;
+}
+
+.agregar{
+  font-size: 20px;
+}
