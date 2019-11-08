@@ -26,7 +26,7 @@
                     <li class="list-group-item ">Título: </li>
                     <li class="list-group-item ">Calificación: </li>
                     <li class="list-group-item">Premios: </li>
-                    <li class="list-group-item">Fecha de creación: <?= date('d-m-Y',strtotime($movie[0]['release_date'])); ?></li>
+                    <li class="list-group-item">Fecha de creación: <?= date('d-m-Y',strtotime($pelicula['release_date'])); ?></li>
                     <li class="list-group-item">Duracion: <</li>
                     <li class="list-group-item">Genero: </li>
                 </ul>

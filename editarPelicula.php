@@ -1,5 +1,24 @@
+<?php
+  require_once("loader.php");
+
+  if($_POST){
+    $pelicula = new Pelicula($_POST['title'],$_POST['rating'],$_POST['awards'],$_POST['release_date'],$_POST['length'],$_POST['genre_id']);
+    
+    //Falta ejecutar los métodos de validarPelicula para encontrar los errores
+    
+    if(count($errores) == 0){
+      $consulta->actualizarPelicula($bd,$pelicula,$_GET['id']);
+    }
+  }
+
+  //Obtener géneros
+  $genres = $consulta->listarTabla($db,'genres');
+  //Obtener detalles de película que quiero editar
+  $movie = $consulta->listarPelicula($db,$_GET['id']);
+?>
+
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,6 +37,7 @@
         <h2 class="text-center">Editar Película</h2>
        <div class="row mt-5">
             <div class="col-lg-8 offset-lg-2">
+            <!--Aquí colocar los errores tal como se mostraron en el programa de agragarPelicula.php-->
                 <form action="" method="post" enctype="multipart/formdata">
                     <div class="form-group">
                         <label for="nombrePelicula">Nombre</label>
@@ -35,7 +55,7 @@
                         <label for="release-date">Release Date</label>
                         <input type="date" class="form-control" name="release_date" id="release-date" value="<?= date('Y-m-d', strtotime($movie[0]['release_date'])); ?>">
                         <?php
-                        /*info:
+                        /*Atentos Aquí pueden encontrar ayuda:
                         https://www.php.net/manual/es/function.date.php
                         https://www.php.net/manual/es/function.strtotime.php
                         */
