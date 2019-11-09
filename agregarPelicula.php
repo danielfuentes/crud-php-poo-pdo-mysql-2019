@@ -1,5 +1,13 @@
 <?php
     require_once('loader.php');
+    if($_POST){
+        $pelicula = new Pelicula($_POST['title'],$_POST['rating'],  $_POST['awards'],$_POST['release_date'],$_POST['length'],$_POST['genre_id']);
+        $errores = $validar->ValidadorPelicula($pelicula);
+        if (count($errores)==0){
+            $consulta->guardarPelicula($bd,'movies',$pelicula);
+        }
+
+    }
     $generos = $consulta->listarGeneros('genres',$bd);
 ?>
 <!DOCTYPE html>
@@ -22,6 +30,13 @@
         <h2 class="text-center">Agregar Película</h2>
        <div class="row mt-5">
             <div class="col-lg-8 offset-lg-2">
+                <?php if(isset($errores)):?>
+                    <ul class="alert alert-danger">
+                        <?php foreach ($errores as  $error) :?>
+                            <li><?=$error ;?></li>
+                        <?php endforeach;?>
+                    </ul>
+                <?php endif; ?>
                 <form action="" method="post" enctype="multipart/formdata">
                     <div class="form-group">
                         <label for="nombrePelicula">Nombre</label>

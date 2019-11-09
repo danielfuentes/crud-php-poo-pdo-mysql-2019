@@ -15,8 +15,28 @@ class Consulta{
         return $generos;
 
     }
+    public function guardarPelicula($bd,$movies,$pelicula){
+        $sql = "insert into $movies (title,rating,awards,release_date,length,genre_id) values (:title,:rating,:awards,:release_date,:length,:genre_id)";
+        $query = $bd->prepare($sql);
+        $query->bindValue(':title',$pelicula->getTitle());
+        $query->bindValue(':rating',$pelicula->getRating());
+        $query->bindValue(':awards',$pelicula->getAwards());
+        $query->bindValue(':release_date',$pelicula->getReleaseDate());
+        $query->bindValue(':length',$pelicula->getLength());
+        $query->bindValue(':genre_id',$pelicula->getGenre());
+        $query->execute();
+        header('location:index.php');
 
+    }
 
+    public function detallePelicula($bd,$movies,$genres,$id){
+        $sql = "select $movies.*,$genres.name from $movies,$genres where $movies.genre_id =$genres.id and $movies.id = $id";
+        $query = $bd->prepare($sql);
+        $query->execute();
+        $pelicula = $query->fetch(PDO::FETCH_ASSOC);
+        
+        return $pelicula;
+    }
 
 
 

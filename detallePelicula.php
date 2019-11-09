@@ -1,3 +1,9 @@
+<?php
+require_once('loader.php');
+$pelicula = $consulta->detallePelicula($bd,'movies','genres',$_GET['id']);
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -23,12 +29,12 @@
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam nisi minima nemo expedita distinctio ipsa eum magnam fugiat! Aspernatur, illo.</p>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item ">Título: </li>
-                    <li class="list-group-item ">Calificación: </li>
-                    <li class="list-group-item">Premios: </li>
+                    <li class="list-group-item ">Título: <?=$pelicula['title'] ;?> </li>
+                    <li class="list-group-item ">Calificación: <?=$pelicula['rating'] ;?></li>
+                    <li class="list-group-item">Premios: <?=$pelicula['awards'] ;?></li>
                     <li class="list-group-item">Fecha de creación: <?= date('d-m-Y',strtotime($pelicula['release_date'])); ?></li>
-                    <li class="list-group-item">Duracion: <</li>
-                    <li class="list-group-item">Genero: </li>
+                    <li class="list-group-item">Duracion: <?=$pelicula['length'] ;?></li>
+                    <li class="list-group-item">Genero: <?=$pelicula['name'] ;?></li>
                 </ul>
                 
             </div>
