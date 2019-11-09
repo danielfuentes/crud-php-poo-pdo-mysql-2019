@@ -1,7 +1,11 @@
 <?php
   require_once('loader.php');
-  $peliculas = $consulta->listarPeliculas('movies',$bd);
-  
+  //Esta condición la cree para controlar si debo listar las películas en función de lo que usuario quiere ver por medio de consultar o simplemente cuando carga la página
+  if ($_GET && !empty(trim('busqueda'))){
+    $peliculas = $consulta->buscarPelicula($bd,'movies',$_GET['busqueda']);
+  }else{
+    $peliculas = $consulta->listarPeliculas($bd,'movies');
+  }  
  
 ?>
 <!DOCTYPE html>
@@ -22,6 +26,7 @@
     <div class="spacer"></div>
     <h2 class="text-center">Listado de Películas!!!</h2>
     <div>
+      <!--Este es formulario para que el usuario busque la película quje desee-->
       <form action="" method="get">
         <input type="submit" value="Buscar"><input type="text" name="busqueda">
       </form>
@@ -43,8 +48,8 @@
               <td><?=$value['id'];?></td>
               <td><?=$value['title'];?></td>
               <td><a href="detallePelicula.php?id=<?=$value['id'];?>"><ion-icon name="eye"></ion-icon></a></td>
-              <td><a href="#"><ion-icon name="create"></ion-icon></a></td>
-              <td><a href="#"><ion-icon name="trash"></ion-icon></td></a>
+              <td><a href="editarPelicula.php?id=<?=$value['id'];?>"><ion-icon name="create"></ion-icon></a></td>
+              <td><a href="borrarPelicula.php?id=<?=$value['id'];?>"><ion-icon name="trash"></ion-icon></td></a>
             </tr>
 
           <?php endforeach;?>

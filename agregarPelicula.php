@@ -8,7 +8,7 @@
         }
 
     }
-    $generos = $consulta->listarGeneros('genres',$bd);
+    $generos = $consulta->listarGeneros($bd,'genres');
 ?>
 <!DOCTYPE html>
 <html lang="es">
